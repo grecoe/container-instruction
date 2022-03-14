@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# DotNet
+.vs/
+bin/
+obj/*
+*.sln
+Notes.md 
+
 # C extensions
 *.so
 

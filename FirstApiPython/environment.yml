@@ -1,0 +1,9 @@
+name: FlaskApiEnv
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - urllib3
+  - pip:    
+    - flask==2.0.3
