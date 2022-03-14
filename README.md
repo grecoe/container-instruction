@@ -5,7 +5,7 @@ Details about creating/using containers in C# and Python(Flask) in both local do
 ### [Getting Started](./docs/GetStarted.md)
 Gives basic instructions on setting up Docker by getting a Docker Hub account, and setting up your local machine to do some real work. 
 
-### [Building Containers](./docs/BuildContainers.md)
+### [Building Containers](./docs/Containers.md)
 This repo has two different types of containers that you can build. This page describes how to build the containers, run them locally, and perform some basic Docker commands to see your images/containers.
 
 - .NET Rest API

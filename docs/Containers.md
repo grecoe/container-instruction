@@ -1,4 +1,4 @@
-# Building Containers
+# Docker Containers
 
 Once you have followed the Getting Started directions by getting a Docker Hub account and installing Docker Desktop it's time to start building a container. 
 
@@ -38,7 +38,15 @@ http://localhost:[local_port]/weatherforecast
 ### Python
 http://localhost:[local_port]
 
-## Container Query
+## Push container to DockerHub
+Once you've built the container locally it's time to push it to DockerHub so it can be consumed. 
+
+From the command line run the following command:
+> docker push [dockerhubname]/[image_name]
+
+Go to [DockerHub](https://hub.docker.com) and you should see a repository with the container you pushed. 
+
+## Container Query with Docker
 
 List all containers regardless of state
 > docker container ls -a
@@ -55,4 +63,15 @@ Stop your container
 or 
 > docker container rm [container_id_from_above_command]
 
+
+## Container Query in ACI with Azure CLI
+First, go through the [Azure Container Instance](./ACI.md) document first. 
+
+[Azure Container CLI](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest) reference.
+
+See the log
+> az container logs --resource-group [your_rg] --name [your_aci_service]
+
+See info about the service
+> az container show --resource-group [your_rg] --name [your_aci_service]
 
