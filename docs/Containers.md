@@ -64,14 +64,3 @@ or
 > docker container rm [container_id_from_above_command]
 
 
-## Container Query in ACI with Azure CLI
-First, go through the [Azure Container Instance](./ACI.md) document first. 
-
-[Azure Container CLI](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest) reference.
-
-See the log
-> az container logs --resource-group [your_rg] --name [your_aci_service]
-
-See info about the service
-> az container show --resource-group [your_rg] --name [your_aci_service]
-

@@ -21,6 +21,6 @@ To buld and run in your local docker instance review the [Build Conatainers](./B
 - Get yourself a hub.docker.com account.
 - Re-open Docker Destop and make sure you are logged into your account
 - Push the container to docker hub
-    > docker push anddang/firstapi
+    > docker push [dockerhubname]/[image_name]
 - Create an Azure container instance that uses your image then open a browser to
     > http://[your_service_name].[your_region].azurecontainer.io/weatherforecast
