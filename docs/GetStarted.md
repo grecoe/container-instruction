@@ -13,7 +13,9 @@ Go to [Docker Hub](https://hub.docker.com/) and
 
 You can then figure out what registry you are in by running:
 > docker system info 
+
 And you *should* have an entry for Registry that looks something like this: 
+
 > https://index.docker.io/v1/
 
 ## Logging in

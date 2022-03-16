@@ -9,6 +9,7 @@ bin/
 obj/*
 *.sln
 Notes.md 
+yaml/
 
 # C extensions
 *.so
