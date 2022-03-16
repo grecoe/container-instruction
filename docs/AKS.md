@@ -13,7 +13,7 @@ See the [References](#references) section for helpful links to articles related 
 - [Configure ACR and AKS](#configure-acr-and-aks)
 - [Push your container to your ACR](#push-your-container-to-your-acr)
 - [Create AKS Workload](#create-an-aks-workload)
-
+- [Cleanup](#cleanup)
 
 # Configure ACR and AKS
 This example uses an ACR (Azure Container Registry) to host the images that we want the AKS (Azure Kubernetes Service) instance to pull images from.This section has you:
@@ -150,7 +150,7 @@ This is a 2 step process.
 # Create an AKS Workload
 This section you will create an actual workflow with your image in the AKS instance. For the example we will create a deployment object. 
 
-# Create a deployment
+## Create a deployment
 Open up the Azure Portal and go to your AKS cluster and
 
 - In the menu select Workloads / Add+ 
@@ -166,15 +166,15 @@ Open up the Azure Portal and go to your AKS cluster and
 On a command prompt check the following
 > kubectl get pods
 
-    Shows you information about the pod(s) you created with the deployment. With the deployment we have created above, there should be 1 pod. 
+Shows you information about the pod(s) you created with the deployment. With the deployment we have created above, there should be 1 pod. 
 
 > kubectl get deployments
 
-    This will show you (unless you've been working on this service) a single deployment. If you have not changed the name values in the YML file, there will be one deployment named *firstpythonapi*
+This will show you (unless you've been working on this service) a single deployment. If you have not changed the name values in the YML file, there will be one deployment named *firstpythonapi*
 
 > kubectl get services
 
-    This will show the single default service. 
+This will show the single default service. 
 
 ## Create service to expose nodes
 Now it's time to expose, via TCP, the container you have running to the outside world. 
@@ -228,12 +228,6 @@ Supporting Articles
 - [Manifest File](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
 - [YAML Core Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
 
-
-
-Then you need a YAML file to import it
-
-[Networking deep dive](https://jonathan18186.medium.com/azure-kubernetes-service-aks-networking-deep-dive-part-2-pod-and-service-communication-pod-and-336ad47518c)
-> kubectl create -f pod-example.yaml
 
 
 # References
