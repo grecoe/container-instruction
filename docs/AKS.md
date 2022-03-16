@@ -32,7 +32,7 @@ You need to configure your docker installation to recognize and have access to y
 
 > az account set -s [your_subscription_id]
 
-> az acr login --name [acrName]
+> az acr login --name [ACR_NAME]
 
 This merges in the user information to the C:\Users\YOU\.docker\config file and makes the ACR accessible for push/pull events in your docker environment. The token used doesn't last forever so you may need to do this daily, or more frequently. 
 
@@ -133,29 +133,100 @@ You should use whatever the name is you have there for the FirstApiPython image 
 This is a 2 step process. 
 
 1. Tag your image for the ACR 
-    > docker tag [dockerhubname]/[image_name]:[version] [AcrName].azurecr.io/samples/[image_name]
+    > docker tag [dockerhubname]/[image_name]:[version] [ACR_NAME].azurecr.io/samples/[image_name]
 
     Which translates to
 
-    > docker tag myhubaccount/firstpythonapi:latest [AcrName].azurecr.io/samples/firstpythonapi
+    > docker tag myhubaccount/firstpythonapi:latest [ACR_NAME].azurecr.io/samples/firstpythonapi
 
 2. Push your image to the ACR
-    > docker push [AcrName].azurecr.io/samples/[image_name]
+    > docker push [ACR_NAME].azurecr.io/samples/[image_name]
 
     Which translates to
 
-    > docker push [AcrName].azurecr.io/samples/firstpythonapi
+    > docker push [ACR_NAME].azurecr.io/samples/firstpythonapi
 
 
 # Create an AKS Workload
+This section you will create an actual workflow with your image in the AKS instance. For the example we will create a deployment object. 
 
-<b>TBD</b>
-This section you will create an actual workflow with your image in the AKS instance
+# Create a deployment
+Open up the Azure Portal and go to your AKS cluster and
+
+- In the menu select Workloads / Add+ 
+- Open the file ./yaml/deployment.yml 
+    - The deployment name is current set at *firstpythonapi* you can change this if you wish
+    - Under template.spec.containers.image change this to the value of your ACR and your image that you pushed to your ACR
+    - Under template.spec.imagePullSecrets.name change this to the name of the AKS secret you created above == [secret-name]
+- Copy the contents of the file into the dialog provided
+- Click OK
+- This will take a few minutes but the UI will give you an indication when it is up and running.You may need to click on the item in the list to drill in, but it will go green pretty fast. 
+
+
+On a command prompt check the following
+> kubectl get pods
+
+    Shows you information about the pod(s) you created with the deployment. With the deployment we have created above, there should be 1 pod. 
+
+> kubectl get deployments
+
+    This will show you (unless you've been working on this service) a single deployment. If you have not changed the name values in the YML file, there will be one deployment named *firstpythonapi*
+
+> kubectl get services
+
+    This will show the single default service. 
+
+## Create service to expose nodes
+Now it's time to expose, via TCP, the container you have running to the outside world. 
+
+<b>Service Creation Command</b>
+
+> kubectl expose deployment/firstpythonapi \<br>&nbsp;&nbsp;&nbsp; --type="LoadBalancer" \ <br>&nbsp;&nbsp;&nbsp; --port 8080 \ <br>&nbsp;&nbsp;&nbsp; --target-port 80 \ <br>&nbsp;&nbsp;&nbsp;  --protocol TCP \ <br> &nbsp;&nbsp;&nbsp; --name mytestservice
+
+One Liner
+> kubectl expose deployment/firstpythonapi --type="LoadBalancer" --port 8080 --target-port 80 --protocol TCP --name mytestservice
+
+The above command will take maybe a couple of minutes if the load balancer isn't already stood up. You can check the state of your service with the following command. Only continue after the column of EXTERNAL IP is filled in. 
+
+> kubectl get services
+
+or 
+
+> kubectl describe services/firstpythonapi
+
+Next you can test the endpoint with curl:
+
+> curl [EXTERNAL-IP-VALUE]:8080
+
+This should produce your result, you can also paste into the address bar of your broser:
+
+> http://[EXTERNAL-IP-VALUE]:8080
+
+# Cleanup
+Now that we've run it through, there are some things you can do to clean up. Again, these assume that you have not changed the name *firstpythonapi* in the YML file. 
+
+<b>Only complete all of the following steps when you are done with your deployment testing</b>
+
+1. Clean up AKS
+    > kubectl delete svc mytestservice
+        Delete the exposed endpoint
+    > kubectl delete deployment firstpythonapi
+        Delete the deployment
+2. Delete the service principal with name [SERVICE_PRINCIPAL_NAME] from above.
+    - Go to the Azure Portal
+    - Click on Active Directory
+    - Search for [SERVICE_PRINCIPAL_NAME]
+    - Under *App Registrations* click the entry.
+    - Delete 
+3. Delete your ACR and AKS instances
+
 
 Supporting Articles
-    - [Creating Objects](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects)
-    - [Manifest File](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
-    - [Core Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
+- [Kubernetes Exposing via Service](https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/)
+- [kubectl expose](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_expose/)
+- [Creating Objects](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects)
+- [Manifest File](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
+- [YAML Core Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
 
 
 
@@ -186,3 +257,8 @@ Then you need a YAML file to import it
     > az ml service update realtime -i [az_ml_service_id] --memory [i.e. 1G,500M]
 
     > az ml service update realtime -i [az_ml_service_id] --replica-max-concurrent-requests [i.e. 10,20]
+- [Kubernetes Exposing via Service](https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/)
+- [kubectl expose](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_expose/)
+- [Creating Objects](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects)
+- [Manifest File](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
+- [YAML Core Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests)
