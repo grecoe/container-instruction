@@ -27,3 +27,15 @@ To buld and run in your local docker instance review the [Build Conatainers](./B
     > docker push [dockerhubname]/[image_name]
 - Create an Azure container instance that uses your image then open a browser to
     > http://[your_service_name].[your_region].azurecontainer.io/
+
+
+# Using Identities
+The flask container is going to look for a DefaultAzureCredential followed by an AzureCliCredential in order when the endpoint is hit. 
+
+Unless you set up an identity your return will be an error screen showing failed retrieval of tokens. However, to make that part work.
+
+- Create a User Managed Identity in your RG 
+- Open your Python container instance and set a User Managed Identity to the identity you created above.
+- Restart the container
+- Now hit the endpoint and you should see a token displayed. 
+- Take that token to https://jwt.io/ to see the contents.
