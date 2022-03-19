@@ -13,6 +13,7 @@ See the [References](#references) section for helpful links to articles related 
 - [Configure ACR and AKS](#configure-acr-and-aks)
 - [Push your container to your ACR](#push-your-container-to-your-acr)
 - [Create AKS Workload](#create-an-aks-workload)
+- [User Managed Identity](#user-managed-identity)
 - [Cleanup](#cleanup)
 
 # Configure ACR and AKS
@@ -147,6 +148,7 @@ This is a 2 step process.
     > docker push [ACR_NAME].azurecr.io/samples/firstpythonapi
 
 
+
 # Create an AKS Workload
 This section you will create an actual workflow with your image in the AKS instance. For the example we will create a deployment object. 
 
@@ -201,6 +203,12 @@ Next you can test the endpoint with curl:
 This should produce your result, you can also paste into the address bar of your broser:
 
 > http://[EXTERNAL-IP-VALUE]:8080
+
+
+
+# User Managed Identity
+
+[Create with cluster](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity#bring-your-own-control-plane-mi)
 
 # Cleanup
 Now that we've run it through, there are some things you can do to clean up. Again, these assume that you have not changed the name *firstpythonapi* in the YML file. 

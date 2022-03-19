@@ -27,6 +27,7 @@ In your browser navigate to:
 You will get some plain text displayed indicating it came from your Flask app.
 
 
+
 ## Container Query in ACI with Azure CLI
 First, go through the [Azure Container Instance](./ACI.md) document first. 
 

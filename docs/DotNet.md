@@ -14,7 +14,7 @@ The DotNet example uses a simple web api with no authentication or HTTPS.
 
 
 # Local Docker
-To buld and run in your local docker instance review the [Build Conatainers](./BuildContainers.md) page. It will give all of the details on how to build, run and test your .NET Container on your local Docker instance. 
+To buld and run in your local docker instance review the [Build Conatainers](./Containers.md) page. It will give all of the details on how to build, run and test your .NET Container on your local Docker instance. 
 
 
 # Docker Hub / Azure Container Instance

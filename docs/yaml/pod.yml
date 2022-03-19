@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: firstpythonapi
+  namespace: default
+spec:
+  containers:
+    - name: firstpythonapi
+      image: dangtestacr.azurecr.io/sample/firstpythonapi
+      imagePullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: dangacr-secret

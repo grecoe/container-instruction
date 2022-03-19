@@ -6,10 +6,10 @@ __pycache__/
 # DotNet
 .vs/
 bin/
-obj/*
+obj/
 *.sln
 Notes.md 
-yaml/
+
 
 # C extensions
 *.so

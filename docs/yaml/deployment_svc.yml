@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firstpythonapisvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firstpythonapisvc
+  template:
+    metadata:
+      labels:
+        app: firstpythonapisvc
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: firstpythonapisvc
+        image: dangtestacr.azurecr.io/sample/firstpythonapi
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+          name: python
+      imagePullSecrets:
+        - name: dangacr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firstpythonapisvc
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: firstpythonapisvc
