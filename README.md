@@ -28,3 +28,6 @@ Instructions on how to set up an ACI instance with either of the two containers 
 
 ### [Azure Kubernetes Service](./docs/AKS.md)
 How to set up your containers and scale them with AKS. 
+
+### BASH
+Simple bash script using source and creating a few resources in ./bash/aks.sh
