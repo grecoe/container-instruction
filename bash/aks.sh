@@ -7,42 +7,8 @@
 #   3. AKS Instance (lots of defaults)
 #       - Assigns the user managed identity to it
 
-
-SUBSCRIPTIONID="YOUR_SUB_ID"
-RESOURCE_GROUP="RESOURCE_GROUP_NAME"
-REGION="eastus"
-MANAGED_IDENTITY="USER_MANAGED_IDENTITY_NAME"
-CLUSTER_NAME="AKS_CLUSTER_NAME"
-
-eval_cli_command () {
-    # $1 is command to execute
-    # $2 is the file to store result to
-
-    # If there is no file provided, do NOT try and write it out
-    if [ -z "$2" ]; then
-        echo $(eval "$1")
-    else
-        eval "$1" > $2
-    fi
-}
-
-find_output () {
-    # $1 is json file to obtain data from
-    # $2 is the json field to extract value from
-    #echo "Field is $2"
-
-    if test -f "$1"; then
-        command="grep -o '\"$2\": \"[^\"]*' $1 | grep -o '[^\"]*$'"
-        value=$(eval "$command")
-        echo $value
-    else
-        echo "The file $1 does not exist"
-    fi
-}
-
-# Constants for validation
-false=0
-true=1
+# Set your variables in the following file, also imports functions
+source globals.sh
 
 # Files we'll utilize
 accountjson="account.json"
@@ -57,6 +23,7 @@ account_id=$(find_output $accountjson "id")
 
 if [[ $account_id != $SUBSCRIPTIONID ]]; then
     echo "Swtiching to account $SUBSCRIPTIONID from $account_id"
+    exit
     eval_cli_command "az account set -s $SUBSCRIPTIONID"
 else
     echo "Already in correct subscription $SUBSCRIPTIONID"
@@ -105,5 +72,3 @@ exit
 
 az role assignment create --assignee $identity_id --role "Managed Identity Operator" --scope $resource_group_id
 sleep 1m 
-
-

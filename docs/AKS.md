@@ -127,6 +127,10 @@ As mentioned at the beginning of this page, it was noted we are going to be work
 
 > docker images
 
+To remove
+
+> docker image rm [IMAGE_NAME]
+
 You should use whatever the name is you have there for the FirstApiPython image that you created, but again, for this section we will assume it's myhubaccount/firstpythonapi. 
 
 - [Supporting Article](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli#create-an-alias-of-the-image)
@@ -208,7 +212,18 @@ This should produce your result, you can also paste into the address bar of your
 
 # User Managed Identity
 
-[Create with cluster](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity#bring-your-own-control-plane-mi)
+You can also see the identity on your cluster, which will be set to the SP identity you created above, in case you forgot it:
+
+> az aks show -g [RESOURCE_GROUP] -n [AKS_NAME] --query "identity"
+
+However, if you want to set a user managed identity to your cluster after it has been created you can use the following command:
+
+> az aks update -g [RESOURCE_GROUP] -n [AKS_NAME] --enable-managed-identity --assign-identity [USER_MANAGED_RESOURCE_ID]
+
+Supporting Articles:
+- [Create identity with cluster](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity#bring-your-own-control-plane-mi)
+- [AKS Managed Identity](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
+- [AKS Pod Identity](https://github.com/Azure/aad-pod-identity#role-assignment)
 
 # Cleanup
 Now that we've run it through, there are some things you can do to clean up. Again, these assume that you have not changed the name *firstpythonapi* in the YML file. 
