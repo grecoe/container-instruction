@@ -187,7 +187,7 @@ Now it's time to expose, via TCP, the container you have running to the outside 
 
 <b>Service Creation Command</b>
 
-> kubectl expose deployment/firstpythonapi \<br>&nbsp;&nbsp;&nbsp; --type="LoadBalancer" \ <br>&nbsp;&nbsp;&nbsp; --port 8080 \ <br>&nbsp;&nbsp;&nbsp; --target-port 80 \ <br>&nbsp;&nbsp;&nbsp;  --protocol TCP \ <br> &nbsp;&nbsp;&nbsp; --name mytestservice
+> kubectl expose deployment/firstpythonapi \ <br>&nbsp;&nbsp;&nbsp; --type="LoadBalancer" \ <br>&nbsp;&nbsp;&nbsp; --port 8080 \ <br>&nbsp;&nbsp;&nbsp; --target-port 80 \ <br>&nbsp;&nbsp;&nbsp;  --protocol TCP \ <br> &nbsp;&nbsp;&nbsp; --name mytestservice
 
 One Liner
 > kubectl expose deployment/firstpythonapi --type="LoadBalancer" --port 8080 --target-port 80 --protocol TCP --name mytestservice
