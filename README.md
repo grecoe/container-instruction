@@ -29,5 +29,8 @@ Instructions on how to set up an ACI instance with either of the two containers 
 ### [Azure Kubernetes Service](./docs/AKS.md)
 How to set up your containers and scale them with AKS. 
 
-### BASH
+#### [HELM](./docs/Helm.md)
+How to use HELM to create a deployment into AKS with a HELM Chart
+
+### [BASH](./docs/Bash.md)
 Simple bash script using source and creating a few resources in ./bash/aks.sh
