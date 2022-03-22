@@ -1,0 +1,17 @@
+# Default values for example.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appname: pythonidentityapp
+replicaCount: 1
+imagePullSecret: dangacr-secret
+acrImage: dangtestacr.azurecr.io/samples/pythonidentity
+
+service:
+  name: pythonidentitysvc
+  type: LoadBalancer
+  port: 8080
+  targetPort: 80  
+
+autoscaling:
+  enabled: false
