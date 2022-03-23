@@ -5,7 +5,7 @@ The DotNet example uses a simple web api with no authentication or HTTPS.
 > To ensure you don't have auth problems when you deploy, ensure you go to the Startup.cs file and comment out the lines in Configure() for UseHttpRedirection and UseAuthorization. 
 
 ## Building and Testing the API
-- Open a CMD prompt and navigate to the ./FirstApi folder
+- Open a CMD prompt and navigate to the ./containers/FirstApi folder
 - Build it with dotnet 
     > dotnetbuild
 - Run it with dotnet

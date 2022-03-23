@@ -4,7 +4,7 @@ The Python example uses a simple web Flask api with no authentication or HTTPS.
 
 
 ## Building and Testing the API
-- Open up a command prompt and point it to the ./FirstApiPython folder
+- Open up a command prompt and point it to the ./containers/FirstApiPython folder
 - Create a conda environment to run with Flask
     > conda env create -f environment.yml
 - Run the conda environment

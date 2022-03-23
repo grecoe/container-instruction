@@ -5,7 +5,7 @@ Once you have followed the Getting Started directions by getting a Docker Hub ac
 Regardless of *which* container you are going to build in this repository, these instructions will work.
 
 # Build Local Container
-- Open the command prompt/bash shell and navigate to either /FirstApi (.NET API) or /FirstApiPython (Flask API) depending on what you want to play with.
+- Open the command prompt/bash shell and navigate to either /containers/FirstApi (.NET API) or /containers/FirstApiPython (Flask API) depending on what you want to play with.
 
 - Build your container  
     - *dockerhubname* is the name of your dockerhub user which you *shoud* use to tag all your images.

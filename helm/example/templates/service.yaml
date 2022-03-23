@@ -7,7 +7,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: {{ .Values.service.name }}
+    # If the selector is not set to the app name service gets no endpoint
+    app: {{ .Values.appname }}
   ports:
     - protocol: TCP
       name: http

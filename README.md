@@ -1,6 +1,20 @@
 # Docker Examples
 
-Details about creating/using containers in C# and Python(Flask) in both local docker (Linux containers) and Azure Container Instances. 
+Details about creating/using containers in C# and Python(Flask) in both local docker (Linux 
+containers) and Azure Container Instances. 
+
+## Repository Structure
+
+|Folder|Contents|
+|-----|------|
+|bash|Example bash scripts, [read the doc](./docs/Bash.md)|
+|containers|Simple [.NET API](./docs/DotNet.md) and [Python Flask API](./docs/Python.md) to be used in [Docker Containers](./docs/Containers.md)|
+|docs|The collection of documentation for each of the Topics below|
+|helm|Example [HELM](./docs/Helm.md) chart to deploy the Python container to an [AKS Cluster](./docs/AKS.md)|
+
+
+## Topics
+
 
 ### [Getting Started](./docs/GetStarted.md)
 Gives basic instructions on setting up Docker by getting a Docker Hub account, and setting up your local machine to do some real work. 
