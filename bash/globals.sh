@@ -31,6 +31,12 @@ find_output () {
     # With output from a previous call put to a file, this function will
     # parse a JSON file and find a value for you. It takes 2 parameters
     #
+    # Similarly you can use jq to parse out what you have in a more simplistic
+    # way using the shell and jq in unison. For example, from az account get the data
+    # to the file and then attempt to get the user
+    #
+    # cat account.json | jq '.user.name' | tr -d '"'
+    #
     # $1 is json file to obtain data from
     # $2 is the json field to extract value from
     #

@@ -17,7 +17,7 @@ You will be presented with a URL that the API is running on, it should be equiva
 Since there is only a get with no path info, a simple get on the endpoint wil prsent results.
 
 # Local Docker
-To buld and run in your local docker instance review the [Build Conatainers](./BuildContainers.md) page. It will give all of the details on how to build, run and test your Python Container on your local Docker instance. 
+To buld and run in your local docker instance review the [Build Conatainers](./Containers.md) page. It will give all of the details on how to build, run and test your Python Container on your local Docker instance. 
 
 
 # Docker Hub / Azure Container Instance
