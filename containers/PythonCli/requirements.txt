@@ -1,0 +1,3 @@
+# Get same packages here as environment.yml and the right python package with docker FROM
+azure-identity==1.7.0
+requests==2.27.1

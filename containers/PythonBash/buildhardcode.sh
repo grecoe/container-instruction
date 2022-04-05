@@ -16,6 +16,6 @@ docker run anddang/hardcode
 
 # Now run it overriding the ENV vars
 echo "Run with ENV overrides"
-docker run anddang/hardcode -e "AZACCT=OverrideAccount" -e "AZACCTKEY=OverrideAccountKey"
+docker run -e "AZACCT=OverrideAccount" -e "AZACCTKEY=OverrideAccountKey" anddang/hardcode 
 
 echo "Build and Runs completed!"
