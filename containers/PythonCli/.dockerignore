@@ -1,4 +1,5 @@
 dockerlaunchex.sh
-dockerrun.py
+dockerrun.sh
 environment.yml
+Readme.md
 __pycache__/

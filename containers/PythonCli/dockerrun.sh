@@ -7,6 +7,8 @@ docker build -t $IMAGE_NAME .
 
 # Now run it overriding the ENV vars
 echo "Run with ENV overrides"
-docker run -e "AZURE_SUBSCRIPTION=6cea88f7-c17b-48c1-b058-bec742bc100f" -e "EXPERIENCE_LABRG=experiencelab-grecoe" $IMAGE_NAME
+docker run -e "AZURE_SUBSCRIPTION=YOUR_SUB_NAME" -e "EXPERIENCE_LABRG=YOUR_OSDU_RG_NAME" $IMAGE_NAME
+
+docker start 589d35c1dd9c
 
 echo "Build and Runs completed!"

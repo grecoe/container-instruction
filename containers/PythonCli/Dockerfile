@@ -11,7 +11,7 @@ ADD . /app/
 
 # Environment variables to set when launching either using docker -e or with az container
 # https://docs.microsoft.com/en-us/azure/container-instances/container-instances-environment-variables
-ENV AZURE_SUBSCRIPTION="your_sub_id"
-ENV EXPERIENCE_LABRG="experiencelab-yourname"
+ENV AZURE_SUBSCRIPTION="YOUR_SUB_ID"
+ENV EXPERIENCE_LABRG="YOUR_RG"
 
 CMD ["bash", "dockerscript.sh"]
